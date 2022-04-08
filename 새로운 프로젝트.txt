@@ -1,0 +1,12 @@
+1. npx create-react-app 프로젝트명
+ex)npx create-react-app blog
+
+2. 미리보기 띄우기 
+프로젝트 폴더들어간후 npx start
+ex)c:/doit/React class/blog npx start
+
+3. react 전용 부트스트랩(react-bootstrap)
+npm install react-bootstrap bootstrap
+
+4.라우터 설치
+npm install react-router-dom@5
