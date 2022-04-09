@@ -10,3 +10,34 @@ npm install react-bootstrap bootstrap
 
 4.라우터 설치
 npm install react-router-dom@5
+
+index.js가서 설정
+
+import {BrowserRouter} from 'react-router-dom'
+이후 BrowserRouter로 App/ 감싸주기
+
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+
+
+5.Style
+5-1 css-component 설치
+npm install styled-components
+
+원하는 compnent파일에 입력
+import styled from 'styled-components'
+
+5-2 SASS설치
+npm install node-sass
+
+6.axios 설치
+npm install axios
+import axios from 'axios';

@@ -3,11 +3,15 @@ import { Button, Navbar, Nav, NavDropdown,Form, FormControl, Jumbotron } from 'r
 import './App.css';
 import Data from './data.js';
 import Detail from './Detail';
+import axios from 'axios';
 
 import {Link, Route, Switch} from 'react-router-dom'
+
+
 function App() {
   let [shoes, shoes변경] = useState(Data);
-  
+  let [재고, 재고변경] = useState(10, 11, 12)
+
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
@@ -15,7 +19,7 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link>Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -32,7 +36,7 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
       
-      <Switch> {/* routh중 하나만 열수 있는 기능 */}
+      <Switch> {/* route중 하나만 열수 있는 기능 */}
         <Route exact path="/">
           <div className="background">
             <h1>Hello, world!</h1>
@@ -50,15 +54,33 @@ function App() {
               {
                 shoes.map((a,i)=>{
                   return <Product shoes={shoes[i]} key={i} />
-                }
-                  
-                )
+                })
               }
+
             </div>
+            <button className="btn btn-primary" onClick={()=>{
+
+
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result)=>{
+                shoes변경([...shoes, ...result.data]); //각 배열을 넣을 수 있는 방법
+                
+                
+              })
+              .catch(()=>{
+                console.log("실패")
+              })
+            }}>더보기</button>
+            <div className="row">
+            
+              
+            </div>
+            
+
           </div>
         </Route>
         <Route path="/detail/:id"> {/* :id파라미터 */}
-          <Detail shoes={shoes}/>
+          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
         </Route>
         <Route path="/:id">
               <div>아무거나</div>
@@ -66,11 +88,7 @@ function App() {
         
         {/* <Route path="/asdf" component={Modal}></Route> */}
       </Switch>
-      
 
-
-
-      
     </div>
   );
 }
@@ -88,7 +106,6 @@ function Product(props){
     </div>
     )
 }
-
 
 
 export default App;

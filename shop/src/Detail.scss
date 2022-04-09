@@ -1,0 +1,46 @@
+$mainColor : #ff0000;
+
+.red{
+    color: $mainColor;
+}
+
+div.container{
+    h4{
+        color : blue;
+    }
+    p{
+        color : green;
+    }
+}
+
+@mixin 함수(){
+    background : #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width : 500px;
+    width : 100%;
+    margin : auto
+}
+
+.myAlert{
+    background : #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width : 500px;
+    width : 100%;
+    margin : auto
+
+}
+.myAlert2{
+    @extend .myAlert; //@extend는 myAlert의모든요소를 불러오는 것
+    background : #ffe591;
+    padding: 20px;
+}
+
+.myAlert3{
+    @include 함수()
+}
+.myAlert p {
+    margin-bottom: 0;
+}
+
