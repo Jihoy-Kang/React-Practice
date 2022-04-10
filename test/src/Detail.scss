@@ -1,0 +1,49 @@
+
+$main_color : #ff0000; //생상을 변수에 넣어서 사용가능
+
+
+.red{
+    color : $main_color;
+}
+
+/* div.container{
+    h4{
+        color : blue;
+    }
+    p{
+        color : blue;
+    }
+} */
+
+.myAlert{
+    background-color: #eeeeee;
+    padding : 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin : auto;
+    p{
+        margin-bottom: 0;
+    }   
+}
+
+.myAlert2{
+    @extend .myAlert;
+    background-color: #ffe591;
+}
+
+@mixin 함수(){
+    background-color: #eeeeee;
+    padding : 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin : auto;
+    p{
+        margin-bottom: 0;
+    }  
+}
+
+.myAlert3{
+    @include 함수();
+}
