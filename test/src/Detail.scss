@@ -1,7 +1,15 @@
 
 $main_color : #ff0000; //생상을 변수에 넣어서 사용가능
 
+.wow-enter{
+    opacity: 0;
+}
 
+.wow-enter-active{ 
+    opacity: 1;
+    transition: all 500ms;
+
+}
 .red{
     color : $main_color;
 }
