@@ -1,8 +1,9 @@
 
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useHistory, useParams  } from 'react-router-dom'
 import styled from 'styled-components'
 import './Detail.scss'
+import { 재고context } from './App.js'; 
 
 let 박스 = styled.div`
     padding : 20px;
@@ -35,7 +36,7 @@ class Detail2 extends React.Component{
 function Detail(props){
     let [alert,alert변경] = useState(true);
     let [inputData,inputData변경] = useState('');
-
+    let 재고 = useContext(재고context)
     useEffect(()=>{
         let timer = setTimeout(()=>{alert변경(false)},2000)
         console.log('안녕')
@@ -74,6 +75,7 @@ function Detail(props){
                 <p>{theItem.content}</p>
                 <p>{theItem.price}원</p>
                 <Info 재고={props.재고}/>
+                {재고}
                 <button className="btn btn-danger" onClick={()=>{
                     
                     props.재고변경([9,10,11])

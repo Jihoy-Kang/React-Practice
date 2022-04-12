@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Button, Navbar, Nav, NavDropdown,Form, FormControl, Jumbotron } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import {Link, Route, Switch} from 'react-router-dom'
 
+export let 재고context = React.createContext(); //리액트 내장문법 
 
 function App() {
   let [shoes, shoes변경] = useState(Data);
@@ -49,6 +50,8 @@ function App() {
             </p>
           </div>
           <div className="container">
+
+            <재고context.Provider value={재고}>
             <div className="row">
 
               {
@@ -58,6 +61,8 @@ function App() {
               }
 
             </div>
+            </재고context.Provider>
+
             <button className="btn btn-primary" onClick={()=>{
 
 
@@ -80,7 +85,9 @@ function App() {
           </div>
         </Route>
         <Route path="/detail/:id"> {/* :id파라미터 */}
-          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          </재고context.Provider>
         </Route>
         <Route path="/:id">
               <div>아무거나</div>
@@ -96,15 +103,24 @@ function App() {
 function Product(props){
   let id = props.shoes.id
   let url = "/detail/"+id
+  let 재고 = useContext(재고context);
+
   return(
     <div className="col-md-4">
       <Link to={url}>
         <img src={props.shoes.url} width="100%" />
         <h4>{props.shoes.title}</h4>
         <p>{props.shoes.price}</p>
+        {재고}
+        <Test></Test>
       </Link>
     </div>
     )
+}
+
+function Test(){
+  let 재고 = useContext(재고context)
+  return <p>{재고}</p>
 }
 
 
