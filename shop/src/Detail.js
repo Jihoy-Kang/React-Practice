@@ -37,6 +37,7 @@ function Detail(props){
     let [alert,alert변경] = useState(true);
     let [inputData,inputData변경] = useState('');
     let 재고 = useContext(재고context)
+    
     useEffect(()=>{
         let timer = setTimeout(()=>{alert변경(false)},2000)
         console.log('안녕')

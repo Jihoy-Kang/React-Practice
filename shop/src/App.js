@@ -110,9 +110,7 @@ function Product(props){
       <Link to={url}>
         <img src={props.shoes.url} width="100%" />
         <h4>{props.shoes.title}</h4>
-        <p>{props.shoes.price}</p>
-        {재고}
-        <Test></Test>
+        <p>{props.shoes.content}&{props.shoes.price}</p>
       </Link>
     </div>
     )
